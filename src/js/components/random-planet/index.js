@@ -6,11 +6,11 @@ import RandomPlanet from "./random-planet";
 import {getNewRandomPlanet} from "../../store/random-planet/actions";
 
 const mapStateToProps = state => ({
-    randomPlanet: state.randomPlanet
+  randomPlanet: state.randomPlanet
 });
 
 const mapDispatchToProps = {
-    getNewRandomPlanet
+  getNewRandomPlanet
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(RandomPlanet);

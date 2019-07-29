@@ -9,75 +9,75 @@ import Spiner from "../spiner";
 import ErrorIndicator from "../error/error-indicator";
 
 export default class RandomPlanet extends React.Component {
-    static propTypes = {
-        getNewRandomPlanet: PropTypes.func.isRequired,
-        randomPlanet: PropTypes.shape({
-            len: PropTypes.number,
-            data: PropTypes.object
-        }).isRequired
-    }
+  static propTypes = {
+    getNewRandomPlanet: PropTypes.func.isRequired,
+    randomPlanet: PropTypes.shape({
+      len: PropTypes.number,
+      data: PropTypes.object
+    }).isRequired
+  }
 
-    async componentDidMount () {
-        const {randomPlanet} = this.props;
+  async componentDidMount () {
+    const {randomPlanet} = this.props;
 
-        let allCount = randomPlanet.len;
-        await this.getNewPlanet(allCount);
-        window.setInterval(async () => {
-            await this.getNewPlanet(allCount);
-        }, 5000);
-    }
+    let allCount = randomPlanet.len;
+    await this.getNewPlanet(allCount);
+    window.setInterval(async () => {
+      await this.getNewPlanet(allCount);
+    }, 2500);
+  }
 
-    getNewPlanet = (allCount) => {
-        const {getNewRandomPlanet} = this.props;
+  getNewPlanet = (allCount) => {
+    const {getNewRandomPlanet} = this.props;
 
-        const newID = Math.floor(Math.random() * (allCount - 0 + 1)) + 0 - 1;
-        return getNewRandomPlanet(newID);
-    }
+    const newID = Math.floor(Math.random() * (allCount - 0 + 1)) + 0 - 1;
+    return getNewRandomPlanet(newID);
+  }
 
-    render() {
-        const {randomPlanet: {data: {
-            name,
-            population,
-            diameter,
-            rotation_period,
-            src,
-            error
-        }}} = this.props;
+  render() {
+    const {randomPlanet: {data: {
+      name,
+      population,
+      diameter,
+      rotation_period,
+      src,
+      error
+    }}} = this.props;
 
-        return pug`
-            article.random-planet(className="card mb-3")
-                if error === undefined
-                    Spiner
+    return pug`
+      article.random-planet(className="card mb-3")
+        if error === undefined
+          Spiner
 
-                else if error
-                    ErrorIndicator
+        else if error
+          ErrorIndicator
 
-                else
-                    section(className="row no-gutters")
-                        div(className="col-10 offset-1 offset-sm-0 col-sm-6 col-lg-4")
-                            img.planet-image(
-                                className="card-img",
-                                src=${src}
-                            )
+        else
+          section(className="row no-gutters")
+            div(className="col-10 offset-1 offset-sm-0 col-sm-6 col-lg-4")
+              img.planet-image(
+                className="card-img",
+                src=src
+              )
 
-                        div(className="col-12 col-sm-6 col-lg-4")
-                            h3.planet-header ${name}
+            div(className="col-12 col-sm-6 col-lg-4")
+              h3.planet-header #{name}
 
-                            ul.planet-description(className="list-group list-group-flush")
-                                li(className="list-group-item") Population:
-                                    span  ${population}
+              ul.planet-description(className="list-group list-group-flush")
+                li(className="list-group-item") Population:
+                  span  #{population}
 
-                                li(className="list-group-item") Rotation period:
-                                    span  ${rotation_period}
+                li(className="list-group-item") Rotation period:
+                  span  #{rotation_period}
 
-                                li(className="list-group-item") Diameter:
-                                    span  ${diameter}
+                li(className="list-group-item") Diameter:
+                  span  #{diameter}
 
-                        div(className="d-lg-block d-none col-lg-4")
-                            img.planet-image(
-                                className="card-img",
-                                src=${src}
-                            )
-        `;
-    }
+            div(className="d-lg-block d-none col-lg-4")
+              img.planet-image(
+                className="card-img",
+                src=src
+              )
+    `;
+  }
 }

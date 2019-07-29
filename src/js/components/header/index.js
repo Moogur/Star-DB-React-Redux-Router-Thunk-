@@ -6,11 +6,11 @@ import Header from "./header";
 import {setItemList} from "../../store/item-list/action";
 
 const mapStateToProps = state => ({
-    mainNav: state.mainNavigation
+  mainNav: state.mainNavigation
 });
 
 const mapDispatchToProps = {
-    setItemList
+  setItemList
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

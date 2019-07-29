@@ -12,30 +12,28 @@ import StarshipsDetail from "../main/starships-detail";
 import ErrorBoundary from "../error/error-boundary";
 import Head from "../head";
 
-export default class App extends React.PureComponent {
-    render() {
-        return pug`
-            ErrorBoundary
-                Router
-                    div(className="container")
-                        Header
+export default function () {
+  return pug`
+    ErrorBoundary
+      Router
+        div(className="container")
+          Header
 
-                        RandomPlanet
+          RandomPlanet
 
-                        main
-                            Route(exact path="/", component=${Head})
+          main
+            Route(exact path="/", component=Head)
 
-                            Route(exact path="/people", component=${ItemList})
+            Route(exact path="/people", component=ItemList)
 
-                            Route(path="/people/:id", component=${PeoplesnDetail})
+            Route(path="/people/:id", component=PeoplesnDetail)
 
-                            Route(exact path="/planets", component=${ItemList})
+            Route(exact path="/planets", component=ItemList)
 
-                            Route(path="/planets/:id", component=${PlanetsDetail})
+            Route(path="/planets/:id", component=PlanetsDetail)
 
-                            Route(exact path="/starships", component=${ItemList})
+            Route(exact path="/starships", component=ItemList)
 
-                            Route(path="/starships/:id/", component=${StarshipsDetail})
-        `;
-    }
+            Route(path="/starships/:id/", component=StarshipsDetail)
+  `;
 }

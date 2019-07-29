@@ -54,7 +54,7 @@
         "Production": "NODE_ENV=production webpack --mode production",
         "Analyze": "NODE_ENV=production webpack --mode production --analyze",
         "Chart": "webpack --profile --json > stats.json",
-        "Deploy": "NODE_ENV=production webpack --mode production gh-pages -d dist"
+        "Deploy": "gh-pages -d dist"
     },
     "browserslist": {
         "production": [
